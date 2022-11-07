@@ -1,0 +1,85 @@
+body{
+    margin: 0px;
+    font-family: Circular, spotify-circular, Helvetica, Arial, sans-serif;
+    color:white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: #1ed760;
+}
+
+nav{
+    height:80px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-item{
+    padding: 28px 17px;
+    font-weight: 700;
+}
+
+.headline{
+    font-size: 156px;
+    line-height: 166px;
+    color: #1ed760;
+    font-weight: 900;
+    position: relative;
+    left: 225px;
+    padding-bottom: 40px;
+}
+
+.headline-first{
+    position: relative;
+    left: -2.5em;
+}
+
+.sub-headline{
+    color: #1ed760;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.button-area{
+    text-align: center;
+}
+
+.button-style{
+    padding: 14px 32px;
+    color: rgb(41, 65, 171);
+    background-color: #1ed760;
+    border-radius: 500px;
+    font-size: inherit;
+    font-weight: 700;
+    border: none;
+}
+
+.button-style:hover{
+    transform: scale(1.5)
+
+}
+
+main{
+    height: 969px;
+    background-color: rgb(41, 65, 171);
+    background-image: url(https://www-growth.scdn.co/static/home/bursts.svg);
+    background-size: 175%;
+    background-position: 46% 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer{
+    height: 530px;
+    background-color: black;
+}
