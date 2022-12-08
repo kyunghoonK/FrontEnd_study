@@ -53,6 +53,7 @@ function play(){
         resultArea.textContent = "Down!!";
     }else {
         resultArea.textContent = "맞췄습니다";
+        gameOver = true;
     }
 
     history.push(userValue);
