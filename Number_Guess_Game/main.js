@@ -16,7 +16,7 @@ let resetButton = document.getElementById("reset-button");
 let chances = 5;
 let gameOver = false;
 let chanceArea = document.getElementById("chance-area");
-let history=[]
+let history=[];
 
 
 playButton.addEventListener("click", play);
