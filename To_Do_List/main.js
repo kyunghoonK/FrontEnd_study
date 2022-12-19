@@ -15,6 +15,7 @@ let tabs = document.querySelectorAll(".task-tabs div");
 let taskList = [];
 let mode = "all";
 let filterList=[];
+let underLine = document.getElementById("under-line");
 
 addButton.addEventListener("click", addTask);
 
