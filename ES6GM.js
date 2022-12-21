@@ -46,14 +46,34 @@ let b = [3,4]
 let c = [5,6]
 
 let result = a.concat(b,c)
+let result2 = [...a,...b,...c]
 console.log(result)
 
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
-// ----- 예제4 -----
+// ----- 예제5 ----- 함수 선언방식
+// 1
+function foo(){
+    console.log("hello")
+}
+
+let khk = () =>{
+    console.log("hello")
+}
+// 2
+
+function poo(){
+    return "haha"
+}
+
+let poo = ()=> "haha"
+
+// this란
+let age = 17
+let person = {
+    name: "hege",
+    age: 20,
+    getInfo:function(){
+        console.log(this.age)
+    }
+}
+person.getInfo() //화살표 함수는 이 this를 할 수 없다
+
