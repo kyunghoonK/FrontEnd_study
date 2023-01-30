@@ -3,31 +3,47 @@ let menus = document.querySelectorAll(".menus button");
 menus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByTopic(event)))
 
 let searchButton = document.getElementById("search-button");
+let url;
+
+// 각 함수에서 필요한 url을 만든다
+// api호출 함수를 부른다
+
+const getNews = async() => {
+    try{
+        let header = new Headers({
+            'x-api-key' : 'bmIy8Z4kdrrGIXjYjjfTCRjDnYdhPkXvHTPcDtO-JCI',
+        });
+        
+        let response = await fetch(url,{headers:header});
+        let data = await response.json();
+        if(response.status == 200){
+            news = data.articles;
+            console.log(news);
+            render();
+        }else{
+            throw new Error(data.message)
+        }
+
+    }catch(error){
+        console.log("잡힌 에러는", error.message)
+        errorRender(error.message)
+    }
+    
+}
 
 const getLatestNews = async() =>{
-    let url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&topic=business&page_size=10`);
-    let header = new Headers({'x-api-key' : 'bmIy8Z4kdrrGIXjYjjfTCRjDnYdhPkXvHTPcDtO-JCI'});
-
-    let response = await fetch(url,{headers:header}); // 대표적으로 ajax, http, fetch가 있음
-    let data = await response.json();
-    news = data.articles;
-    console.log(news);
-
-    render();
+    url = new URL(
+        `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&topic=business&page_size=10`
+        );
+        getNews();
 };
 
 const getNewsByTopic = async (event) =>{
     let topic = event.target.textContent.toLowerCase();
-    let url = new URL(
+    url = new URL(
         `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10&topic=${topic}`
     );
-    let header = new Headers({
-        'x-api-key' : 'bmIy8Z4kdrrGIXjYjjfTCRjDnYdhPkXvHTPcDtO-JCI'
-    });
-    let response = await fetch(url,{headers:header});
-    let data = await response.json();
-    news = data.articles
-    render();
+    getNews()
 };
 
 const getNewsByKeyword = async () => {
@@ -39,16 +55,10 @@ const getNewsByKeyword = async () => {
     // 6. 데이터 보여주기
 
     let keyword = document.getElementById("search-input").value;
-    let url = new URL(
+    url = new URL(
         `https://api.newscatcherapi.com/v2/search?q=${keyword}&page_size=10`
         );
-    let header = new Headers({
-        'x-api-key' : 'bmIy8Z4kdrrGIXjYjjfTCRjDnYdhPkXvHTPcDtO-JCI'
-    });
-    let response = await fetch(url,{headers:header});
-    let data = await response.json();
-    news = data.articles
-    render();
+    getNews()
 };
 
 const render = () => {
@@ -74,6 +84,13 @@ const render = () => {
 
     document.getElementById("news-board").innerHTML = newsHTML;
 };
+
+const errorRender = (message) => {
+    let errorHTML = `<div class="alert alert-danger text-center" role="alert">
+    ${message}
+  </div>`
+    document.getElementById("news-board").innerHTML = errorHTML;
+}
 
 searchButton.addEventListener("click", getNewsByKeyword);
 getLatestNews()
